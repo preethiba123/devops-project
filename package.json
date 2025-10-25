@@ -1,0 +1,21 @@
+{
+  "name": "devops-project",
+  "version": "1.0.0",
+  "description": "Added login feature description for DevOps practice.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/preethiba123/devops-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/preethiba123/devops-project/issues"
+  },
+  "homepage": "https://github.com/preethiba123/devops-project#readme"
+}
