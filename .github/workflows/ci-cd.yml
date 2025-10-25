@@ -2,34 +2,33 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js (example project)
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'   # change if your project uses another version
+          node-version: '18'
 
       - name: Install dependencies
-        run: |
-          cd ./  # if your package.json is in a subfolder, replace ./ with path (e.g., cd client)
-          npm install
+        run: npm install
 
       - name: Run tests
-        run: |
-          npm test --if-present
+        run: npm test
 
-      - name: Build the project
-        run: |
-          npm run build --if-present
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages (example)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
