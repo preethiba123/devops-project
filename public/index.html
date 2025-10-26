@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Pet World</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🐾 My Pet World</h1>
+    <p>Find your new best friend — adopt today!</p>
+    <nav>
+      <a href="/">Home</a> • <a href="/adopt.html">Adopt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="pet-list" class="cards"></section>
+  </main>
+
+  <footer>© 2025 My Pet World — Built with ❤️</footer>
+
+  <script>
+    async function loadPets(){
+      const res = await fetch('/api/pets');
+      const pets = await res.json();
+      const container = document.getElementById('pet-list');
+      container.innerHTML = pets.map(p => `
+        <article class="card">
+          <img src="https://place-puppy.com/300x200" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>${p.type}</p>
+          <p>${p.desc}</p>
+          <a class="btn" href="/adopt.html?petId=${p.id}">Adopt ${p.name}</a>
+        </article>
+      `).join('');
+    }
+    loadPets();
+  </script>
+</body>
+</html>

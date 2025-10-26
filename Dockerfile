@@ -1,20 +1,18 @@
-# Use official Node.js image
+# Dockerfile
 FROM node:18-alpine
 
-# Set the working directory inside the container
+# create app directory
 WORKDIR /app
 
-# Copy package files first (for better caching)
+# copy package files and install deps
 COPY package*.json ./
+RUN npm ci --only=production
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the project files
+# copy app
 COPY . .
 
-# Expose the port your app runs on (change if not 3000)
+# expose port
 EXPOSE 3000
 
-# Command to run the app
+# start app
 CMD ["node", "server.js"]
